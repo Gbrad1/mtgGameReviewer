@@ -1,0 +1,17 @@
+{
+  "name": "mtggamereviewerbot",
+  "version": "1.0.0",
+  "description": "An app used to review recent mtg games via spelltable over discord.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Giles Bradford",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.13.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.51.0"
+  }
+}
