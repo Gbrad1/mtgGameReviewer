@@ -14,7 +14,7 @@ module.exports = {
     async execute(interaction) {
         const modal = new ModalBuilder({
             customId: `myModal-${interaction.user.id}`,
-            title: 'My Modal',
+            title: 'Game Summary',
         });
 
         // question 1
