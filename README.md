@@ -2,7 +2,7 @@
 Discord bot used to record mtg games via a modal and user input once the user has executed the '/record' command.
 
 # Commands
-/record - pops up a modal to record user input.
+/record - pops up a modal to record user input./n
 /crown - Sets "The Monarch 👑" role to whoever is specified. Should be the winner of the last game.
 
 # Additional Features
