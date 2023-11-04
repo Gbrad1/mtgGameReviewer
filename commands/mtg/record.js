@@ -66,7 +66,7 @@ module.exports = {
         // wait for the modal to be submitted
         const filter = (interaction) => interaction.customId === `myModal-${interaction.user.id}`;
 
-        interaction.awaitModalSubmit({ filter, time: 300_000 })
+        interaction.awaitModalSubmit({ filter, time: 600_000 })
         .then((modalInteraction) => {
             const whoPlayedInTheGameInputValue = modalInteraction.fields.getTextInputValue('whoPlayedInTheGameInput');
             const gameFormatInputValue = modalInteraction.fields.getTextInputValue('gameFormatInput');
