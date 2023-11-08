@@ -9,7 +9,7 @@
   "author": "Giles Bradford",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.13.0",
+    "discord.js": "^14.12.1",
     "sequelize": "^6.34.0",
     "sqlite3": "^5.1.6"
   },
