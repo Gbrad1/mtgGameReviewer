@@ -3,7 +3,7 @@ const fs = require('node:fs');
 // path is Node's native path utility module -- helps construct paths to access files and drectories.
 const path = require('node:path');
 
-const { Client, Collection, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
 
 // Intents are used to give the bot only what it needs.
@@ -51,6 +51,6 @@ for (const file of eventFiles) {
 	} else {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
-}
+} 
 
 client.login(token);
