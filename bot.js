@@ -53,4 +53,22 @@ for (const file of eventFiles) {
 	}
 }
 
+const SPECTATE_VARIABLE = '1';
+const SPELLTABLE_LINK = '2';
+
+client.on('message', async message => {
+	console.log(message);
+// Ignore messages from the bot itself
+if (message.author.bot) return;
+
+// Check if the message contains the keyword
+if (message.content.toLowerCase().includes(SPELLTABLE_LINK)) {
+	// change the link to include the spectate variable
+	let spectateLink = message.content += SPECTATE_VARIABLE;
+	// Reply to the user
+	message.reply(`Spectate: ${spectateLink}`);
+	}
+});
+  
+
 client.login(token);
