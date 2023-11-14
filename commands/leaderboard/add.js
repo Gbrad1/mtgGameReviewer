@@ -6,7 +6,25 @@ module.exports = {
     .setDescription('Adds a user to the scoreboard'),
     category: 'leaderboard',   
     async execute(interaction) {
-        //perform some action here to display a leaderboard based on information that is stored in x.
-        //x is yet to be determined.
+
+        const userName = interaction.options.getString('name');
+
+        try {
+			// equivalent to: INSERT INTO tags (name, description, username) values (?, ?, ?);
+			const user = await Users.create({
+				name: userName
+			});
+
+            console.log(`User ${user.name} added.`);
+			return interaction.reply(`User ${user.name} added.`);
+		}
+		catch (error) {
+			if (error.name === 'SequelizeUniqueConstraintError') {
+                console.log(`User ${user.name} already exists.`);
+				return interaction.reply('That user already exists.');
+			}
+            console.log('Something went wrong with adding a user.');
+			return interaction.reply('Something went wrong with adding a user.');
+		}
     }
 };
