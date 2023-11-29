@@ -3,12 +3,22 @@ const Users = require('../../bot.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-    	.setName('adduser')
-    	.setDescription('Adds a user to the leaderboard'),
+    	.setName('add-user')
+    	.setDescription('Adds a user to the leaderboard')
+		.addUserOption(option => option
+			.setName('input-username')
+				.setDescription('The Name to be inserted into the DB')
+				.setRequired(true)
+			)
+		.addIntegerOption(option => option
+			.setName('number-of-wins')
+				.setDescription('Set the number of wins for this user')
+				.setRequired(true)
+			),
     category: 'leaderboard',   
     async execute(interaction) {
-
-        const userName = interaction.options.getString('name');
+		console.log(interaction);
+        const userName = interaction.options.getString('add-user');
 
         try {
 			// equivalent to: INSERT INTO tags (name, description, username) values (?, ?, ?);
