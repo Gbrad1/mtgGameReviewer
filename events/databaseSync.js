@@ -1,34 +1,12 @@
 const { Events } = require('discord.js');
-const Sequelize = require('sequelize');
+const Users = require('../models/user');
 
 module.exports = {
 	name: Events.ClientReady,
 	once: true,
 	execute(client) {
-        const sequelize = new Sequelize('database', 'user', 'password', {
-            host: 'localhost',
-            dialect: 'sqlite',
-            logging: false,
-            // this storage variable is for SQLite only
-            storage: 'database.sqlite',
-        });
-        
-        const Users = sequelize.define('users', {
-            name: {
-                type: Sequelize.STRING,
-                unique: true,
-            },
-            numberOfWins: {
-                type: Sequelize.INTEGER,
-                defaultValue: 0,
-                allowNull: false,
-            }
-        });
         // this forced method is just used for now to get a blank slate everytime I fire up the bot.
 		Users.sync({ force: true});
-        // Users.sync();
         console.log(`⚙️ ${client.user.tag} synced the database. It is ready for use.`);
 	},
 };
-
-
