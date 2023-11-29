@@ -1,9 +1,10 @@
 const { SlashCommandBuilder } = require('discord.js');
+const Users = require('../../bot.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('adduser')
-    .setDescription('Adds a user to the leaderboard'),
+    	.setName('adduser')
+    	.setDescription('Adds a user to the leaderboard'),
     category: 'leaderboard',   
     async execute(interaction) {
 
