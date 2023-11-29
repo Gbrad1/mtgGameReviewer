@@ -4,11 +4,11 @@ const Sequelize = require('sequelize');
 module.exports = {
 	name: Events.ClientReady,
 	once: true,
-	execute() {
+	execute(client) {
         const sequelize = new Sequelize('database', 'user', 'password', {
             host: 'localhost',
             dialect: 'sqlite',
-            logging: true,
+            logging: false,
             // this storage variable is for SQLite only
             storage: 'database.sqlite',
         });

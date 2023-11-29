@@ -2,8 +2,8 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('add')
-    .setDescription('Adds a user to the scoreboard'),
+    .setName('adduser')
+    .setDescription('Adds a user to the leaderboard'),
     category: 'leaderboard',   
     async execute(interaction) {
 
