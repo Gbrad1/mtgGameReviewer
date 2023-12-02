@@ -6,7 +6,7 @@ module.exports = {
     	.setName('add-user')
     	.setDescription('Adds a user to the leaderboard')
 		.addUserOption(option => option
-			.setName('input-username')
+			.setName('guild-member')
 				.setDescription('The Name to be inserted into the DB')
 				.setRequired(true)
 			)
@@ -18,12 +18,15 @@ module.exports = {
     category: 'leaderboard',   
     async execute(interaction) {
 		console.log(interaction);
-        const userName = interaction.options.getString('add-user');
-
+        const guildMember = interaction.options.getUser('guild-member');
+		const numberOfWins = interaction.options.getInteger('number-of-wins') ?? 0;
+		
         try {
 			// equivalent to: INSERT INTO tags (name, description, username) values (?, ?, ?);
 			const user = await Users.create({
-				name: userName
+				id: guildMember.id,
+				name: guildMember,
+				numberOfWins: numberOfWins,
 			});
 
             console.log(`User ${user.name} added.`);
