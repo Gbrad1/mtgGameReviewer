@@ -2,10 +2,10 @@ const Sequelize = require('sequelize');
 const sequelize = require('../utils/database.js');
 
 const Users = sequelize.define('users', {
-    id: {
+    /*id: {
         type: Sequelize.STRING,
         primaryKey: true
-    },
+    },*/
     name: {
         type: Sequelize.STRING,
         unique: true,
