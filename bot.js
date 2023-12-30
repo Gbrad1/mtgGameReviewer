@@ -2,6 +2,8 @@
 const fs = require('node:fs');
 // path is Node's native path utility module -- helps construct paths to access files and drectories.
 const path = require('node:path');
+// Require Sequelize
+const Sequelize = require('sequelize');
 
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');

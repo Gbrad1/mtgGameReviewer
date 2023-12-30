@@ -19,7 +19,8 @@ module.exports = {
 
         // Easter Egg for Dan
         if (message.content.toLowerCase().includes(dansSpecialKeywords)) {
-            message.reply(`I love you too, ${message.author}`)
+            message.reply(`I love you too, ${message.author}`);
+            console.log('Guff shared some love.');
         }
         
 	},
