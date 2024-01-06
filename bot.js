@@ -1,9 +1,18 @@
+/**
+ * Created by: Giles Bradford
+ * 
+ * This discord bot is my personal project used to teach myself javascript. I find it easier to tackle a real world example that I am passionate about than reading/taking
+ * a course that covers every fundamental part of the language. I'll use what I need and increasingly build more as I come across new challenges and ideas. 
+ */
+
+/** Every 'file' in a node.js project is it's own module. You have to assume that the file is not aware of any other 'module' or 'file' in the project. 
+ * So how do you tell the current module about another file? You have to use the require method which you will usually see at the top of the current module. 
+ * As the module loads, it will load whatever is required. 
+ */
 // fs is Node's native file system module -- used to read commands directory and identify our command files.
 const fs = require('node:fs');
 // path is Node's native path utility module -- helps construct paths to access files and drectories.
 const path = require('node:path');
-// Require Sequelize
-const Sequelize = require('sequelize');
 
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
@@ -41,6 +50,7 @@ for (const folder of commandFolders) {
 		}
 	}
 }
+
 
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
