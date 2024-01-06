@@ -1,6 +1,5 @@
 const { SlashCommandBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
 const { guildId, roleId } = require('../../config.json');
-const { client } = require('../../bot.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -9,7 +8,7 @@ module.exports = {
   category: 'mtg',
   async execute(interaction) {
     // Fetch the guild (server) from the bot
-    const guild = client.guilds.cache.get(guildId);
+    const guild = interaction.guild;
 
     // Check if the guild exists
     if (!guild) {

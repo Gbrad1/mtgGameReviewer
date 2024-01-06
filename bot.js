@@ -28,7 +28,7 @@ const client = new Client({
 });
 
 module.exports = {
-    client,
+    client
 };
 
 // list of commands that are bot will listen for.
@@ -46,6 +46,8 @@ for (const folder of commandFolders) {
 		if ('data' in command && 'execute' in command) {
 			client.commands.set(command.data.name, command);
 		} else {
+			console.log(`Command :::: ${command}`);
+			console.log(`execute :::: ${command.execute}`);
 			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}
 	}
