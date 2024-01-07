@@ -14,7 +14,6 @@ module.exports = {
     async execute(interaction) {
         const guild_member = interaction.options.getUser('guild-member');
         const guild_member_username = guild_member.username;
-        console.log(typeof guild_member_username);
         // equivalent to: SELECT * FROM users WHERE name = 'tagName' LIMIT 1;
 	    const user = await Users.findOne({ where: { name: guild_member_username } });
 
