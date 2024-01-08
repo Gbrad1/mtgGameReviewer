@@ -11,10 +11,10 @@ module.exports = {
     async execute(interaction) {
         // Fetch data from SQLite database
         const user_list = await Users.findAll({ attributes: ['name', 'numberOfWins'] });        
-        // parse through each user that came back and create an 
+        // parse through each user that came back and store it's value to an array.
         let list_of_users = [];
         user_list.forEach(user => list_of_users.push(user.dataValues));
-        const info = formatDataIntoRows(list_of_users);
+        const info = formatDataIntoRows(list_of_users.sort((a, b) => b.numberOfWins - a.numberOfWins));
 
         // Send or edit the Discord message
         // If there's no stored message ID, send a new message
@@ -23,10 +23,10 @@ module.exports = {
             const leaderboardChannel = interaction.client.channels.cache.get(leaderboardChannelId);
             const sentMessage = await leaderboardChannel.send(`Leaderboard:\n\`\`\`${info.join('\n')}\`\`\``);
             let messageId = sentMessage.id;
-            console.log('we got here meaning you should update the JSON file');
+            console.log('we got here meaning we should update the JSON file');
             addVariableToJsonFile(messageId);
         } else {
-            console.log('we got here meaning we already have a message. Only one message should exist');
+            console.log('---- Updating leaderboard ----');
             // Fetch the channel and message
             const leaderboardChannel = interaction.client.channels.cache.get(leaderboardChannelId);
             const leaderboardMessage = await leaderboardChannel.messages.fetch(leaderboardMessageId);
@@ -77,7 +77,7 @@ async function writeJsonFile(filePath, data) {
     }
 }
 
-// Example: Add a variable to the JSON file
+// Add a variable to the JSON file
 async function addVariableToJsonFile(value) {
     const filePath = './config.json';
 
