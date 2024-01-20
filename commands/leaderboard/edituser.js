@@ -26,6 +26,7 @@ module.exports = {
         const affectedRows = await Users.update({ numberOfWins: number_of_wins }, { where: { name: guild_member_username } });
     
         if (affectedRows > 0) {
+            console.log(`Row updated. ${guild_member_username} now has ${number_of_wins} wins.`);
             return interaction.reply(`Tag ${guild_member_username} was edited.`);
         }
     
