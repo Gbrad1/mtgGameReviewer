@@ -9,9 +9,9 @@
   "author": "Giles Bradford",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.12.1",
-    "sequelize": "^6.35.0",
-    "sqlite3": "^5.1.6"
+    "discord.js": "^14.14.1",
+    "sequelize": "^6.37.3",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "eslint": "^8.51.0"
