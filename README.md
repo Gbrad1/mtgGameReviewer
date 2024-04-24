@@ -3,7 +3,7 @@ Discord bot used to record mtg games via a modal and user input once the user ha
 
 # Commands
 /record - pops up a modal to record user input.<br />
-/crown - Sets "The Monarch 👑" role to whoever is specified. Should be the winner of the last game.
+/crown - Sets "The Monarch 👑" role to whoever is specified. Should be the user at the top of the leaderboard.
 /addUserToLeaderboard - Asks the user to input a name and the amount of wins the user has.
 /deleteUser - This will remove a user from the database.
 /editUser - SlashCommand to edit the users number of wins.
