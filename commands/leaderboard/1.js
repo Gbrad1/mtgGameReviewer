@@ -16,7 +16,7 @@ module.exports = {
         const guild_member_username = guild_member.username;
 
         // equivalent to: SELECT * FROM tags WHERE name = 'tagName' LIMIT 1;
-        const guild_member_record = await Tags.findOne({ where: { name: guild_member_username } });
+        const guild_member_record = await Users.findOne({ where: { name: guild_member_username } });
 
         if (guild_member_record) {
             // equivalent to: UPDATE tags SET numberOfWins = numberOfWins + 1 WHERE name = 'tagName';
