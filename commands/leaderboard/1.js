@@ -17,12 +17,13 @@ module.exports = {
 
         // equivalent to: SELECT * FROM tags WHERE name = 'tagName' LIMIT 1;
         const guild_member_record = await Users.findOne({ where: { name: guild_member_username } });
+        const number_of_wins = guild_member_record.get('numberOfWis') + 1;
 
         if (guild_member_record) {
             // equivalent to: UPDATE tags SET numberOfWins = numberOfWins + 1 WHERE name = 'tagName';
             guild_member_record.increment('numberOfWins');
 
-            return interaction.reply(String(guild_member_record.get('numberOfWins')));
+            return interaction.reply(`Good Aim. You have ${number_of_wins} victories`);
         }
 
         return interaction.reply(`Could not find a user with name ${guild_member_username}. Please add the user with
