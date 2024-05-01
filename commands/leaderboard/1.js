@@ -22,7 +22,7 @@ module.exports = {
             // equivalent to: UPDATE tags SET numberOfWins = numberOfWins + 1 WHERE name = 'tagName';
             guild_member_record.increment('numberOfWins');
 
-            return interaction.reply(guild_member_record.get('numberOfWins'));
+            return interaction.reply(String(guild_member_record.get('numberOfWins')));
         }
 
         return interaction.reply(`Could not find a user with name ${guild_member_username}. Please add the user with
