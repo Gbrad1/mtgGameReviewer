@@ -4,7 +4,12 @@
  * Purpose: To provide friends with a way to record and keep track of MTG games we play.
  */
 
-const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, SlashCommandBuilder } = require('discord.js');
+const { ActionRowBuilder,
+    ModalBuilder,
+    TextInputBuilder,
+    TextInputStyle,
+    SlashCommandBuilder,
+    ModalSubmitInteraction } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -64,10 +69,11 @@ module.exports = {
         await interaction.showModal(modal);
 
         // wait for the modal to be submitted
+        
         const filter = (currentInteraction) => currentInteraction.customId === `myModal-${interaction.id}`;
 
         interaction
-        .awaitModalSubmit({ filter, time: 60_000 })
+        .awaitModalSubmit({ filter, time: 600_000 })
         .then((modalInteraction) => {
             const whoPlayedInTheGameInputValue = modalInteraction.fields.getTextInputValue('whoPlayedInTheGameInput');
             const gameFormatInputValue = modalInteraction.fields.getTextInputValue('gameFormatInput');
@@ -78,10 +84,10 @@ module.exports = {
             const output = `Players: ${whoPlayedInTheGameInputValue}\nFormat: ${gameFormatInputValue}\nWinner: ${whoWonTheGameInputValue}\nMatch Time: ${howLongWasTheGameInputValue}\nMatch Highlight: ${matchHighlightInputValue}`;
             
             modalInteraction.reply(output);
-            console.log(`----- ${interaction.user.username} successfully created a record -----\n${output}`);
+            console.log(`\n----- ${interaction.user.username} successfully created a record -----\n${output}\n`);
         })
         .catch((err) => {
-            console.log(`Error: ${err}`);
+            console.log(`Error: ${err}\n`);
         });
     },
 };
