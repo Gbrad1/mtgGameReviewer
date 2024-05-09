@@ -17,16 +17,21 @@ module.exports = {
 
         // equivalent to: SELECT * FROM tags WHERE name = 'tagName' LIMIT 1;
         const guild_member_record = await Users.findOne({ where: { name: guild_member_username } });
-        const number_of_wins = guild_member_record.get('numberOfWis') + 1;
 
-        if (guild_member_record) {
-            // equivalent to: UPDATE tags SET numberOfWins = numberOfWins + 1 WHERE name = 'tagName';
-            guild_member_record.increment('numberOfWins');
+        if (guild_member_record == null) {
+            return interaction.reply(`${guild_member_username} is not in the database yet. Please use the /addusertoleaderboard command.`);
+        }
+        const number_of_wins = guild_member_record.get('numberOfWins') + 1;
 
-            return interaction.reply(`Good Aim. You have ${number_of_wins} victories`);
+        // equivalent to: UPDATE tags SET numberOfWins = numberOfWins + 1 WHERE name = 'tagName';
+        guild_member_record.increment('numberOfWins');
+
+        if (number_of_wins == 1) {
+            console.log(`${guild_member_username} got their first win!!!\n`);
+            return interaction.reply(`Congratulations on your first win!`);
         }
 
-        return interaction.reply(`Could not find a user with name ${guild_member_username}. Please add the user with
-        the /addusertoleaderboard command.`);
+        console.log(`${guild_member_username} now has ${number_of_wins}  wins.\n`);
+        return interaction.reply(`You have ${number_of_wins} victories`);
     }
 }
