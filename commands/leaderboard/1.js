@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const Users = require('../../models/user.js');
+const leaderboard = require('./leaderboard.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -19,7 +20,8 @@ module.exports = {
         const guild_member_record = await Users.findOne({ where: { name: guild_member_username } });
 
         if (guild_member_record == null) {
-            return interaction.reply(`${guild_member_username} is not in the database yet. Please use the /addusertoleaderboard command.`);
+            await interaction.reply(`${guild_member_username} is not in the database yet. Please use the /addusertoleaderboard command.`);
+            return;
         }
         const number_of_wins = guild_member_record.get('numberOfWins') + 1;
 
@@ -28,10 +30,17 @@ module.exports = {
 
         if (number_of_wins == 1) {
             console.log(`${guild_member_username} got their first win!!!\n`);
-            return interaction.reply(`Congratulations on your first win!`);
+            await interaction.reply(`Congratulations on your first win!`);
+            leaderboard.updateLeaderboard(interaction);
+            return;
         }
 
         console.log(`${guild_member_username} now has ${number_of_wins}  wins.\n`);
-        return interaction.reply(`You have ${number_of_wins} victories`);
+        await interaction.reply({content: `${guild_member_username} now has ${number_of_wins} victories`, ephemeral: true});
+        // add some sort of pause
+        setTimeout(function () {
+            interaction.deleteReply();
+          }, 5000);
+          leaderboard.updateLeaderboard(interaction);
     }
 }

@@ -10,12 +10,19 @@ module.exports = {
     category: 'leaderboard',   
     async execute(interaction) {
         // Fetch data from SQLite database
+        updateLeaderboard(interaction);
+            // Respond to the original interaction
+            if (!interaction.deferred) {
+            await interaction.reply('Leaderboard updated!');
+        }
+    },
+    updateLeaderboard: async function(interaction) {
         const user_list = await Users.findAll({ attributes: ['name', 'numberOfWins'] });        
         // parse through each user that came back and store it's value to an array.
         let list_of_users = [];
         user_list.forEach(user => list_of_users.push(user.dataValues));
         const info = formatDataIntoRows(list_of_users.sort((a, b) => b.numberOfWins - a.numberOfWins));
-
+    
         // Send or edit the Discord message
         // If there's no stored message ID, send a new message
         console.log(`leaderboardMessageId ${leaderboardMessageId}`);
@@ -34,13 +41,11 @@ module.exports = {
             // Edit the existing message with updated content
             leaderboardMessage.edit(`Leaderboard:\n\`\`\`${info.join('\n')}\`\`\``);
         }
-
-        // Respond to the original interaction
-        if (!interaction.deferred) {
-            await interaction.reply('Leaderboard updated!');
-        }
-    },
+    }
+    
 };
+
+
 
 // Format the data into a grid
 function formatDataIntoRows(data) {
