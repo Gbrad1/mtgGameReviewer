@@ -10,7 +10,7 @@ module.exports = {
     category: 'leaderboard',   
     async execute(interaction) {
         // Fetch data from SQLite database
-        updateLeaderboard(interaction);
+        this.updateLeaderboard(interaction);
             // Respond to the original interaction
             if (!interaction.deferred) {
             await interaction.reply('Leaderboard updated!');
